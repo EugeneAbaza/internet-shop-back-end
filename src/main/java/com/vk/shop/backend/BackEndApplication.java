@@ -1,4 +1,4 @@
-package com.shop.backend;
+package com.vk.shop.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

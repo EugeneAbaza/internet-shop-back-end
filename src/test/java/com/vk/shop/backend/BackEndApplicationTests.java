@@ -1,4 +1,4 @@
-package com.shop.backend;
+package com.vk.shop.backend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
