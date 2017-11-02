@@ -2,6 +2,7 @@ package com.vk.shop.backend.controllers;
 
 import com.vk.shop.backend.data.entities.Goods;
 import com.vk.shop.backend.data.repositories.GoodsRepository;
+import com.vk.shop.backend.services.MainPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,20 +16,20 @@ import java.util.List;
 @RequestMapping("/main")
 public class MainPageController {
     @Autowired
-    private GoodsRepository repository;
+    private MainPageService service;
 
     @RequestMapping("/discount")
-    public List<Goods> getGoods(){
-        return repository.findTop4ByDiscountGreaterThan(0, new Sort(Sort.Direction.DESC, "discount"));
+    public List<Goods> getByDiscount(){
+        return service.findTop4ByDiscountGreaterThan(0, new Sort(Sort.Direction.DESC, "discount"));
     }
 
     @RequestMapping("/top")
     public List<Goods> getTop(){
-        return repository.findTop4ByOrderBySalesDesc();
+        return service.findTop4ByOrderBySalesDesc();
     }
 
     @RequestMapping("/newest")
     public List<Goods> getNewest(){
-        return repository.findTop4ByOrderByDateDesc();
+        return service.findTop4ByOrderByDateDesc();
     }
 }
