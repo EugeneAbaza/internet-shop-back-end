@@ -20,7 +20,7 @@ public class Goods {
     private long reservedCount;
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category categories;
+    private Category category;
     private long discount;
     private String image;
     @ManyToOne

@@ -1,8 +1,7 @@
 package com.vk.shop.backend.controllers;
 
 import com.vk.shop.backend.data.entities.Goods;
-import com.vk.shop.backend.data.repositories.GoodsRepository;
-import com.vk.shop.backend.services.MainPageService;
+import com.vk.shop.backend.services.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping("/main")
 public class MainPageController {
     @Autowired
-    private MainPageService service;
+    private GoodsService service;
 
     @RequestMapping("/discount")
     public List<Goods> getByDiscount(){
