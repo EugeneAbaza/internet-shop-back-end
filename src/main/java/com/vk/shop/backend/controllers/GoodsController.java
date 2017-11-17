@@ -17,4 +17,9 @@ public class GoodsController {
     public Page<Goods> findAllByCategoryId(@PathVariable("id") int id, @RequestParam("page") int page){
         return service.findAllByCategoryId(id, page);
     }
+
+    @RequestMapping(path = "/search", method = RequestMethod.POST)
+    public Page<Goods> search(@RequestBody String title){
+        return service.findAllByNameLike(title, 0);
+    }
 }
