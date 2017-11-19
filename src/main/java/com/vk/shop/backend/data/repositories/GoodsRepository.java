@@ -14,4 +14,5 @@ public interface GoodsRepository extends JpaRepository<Goods, Long> {
     List<Goods> findTop4ByOrderByDateDesc();
     Page<Goods> findAllByCategoryId(long id, Pageable pageable);
     Page<Goods> findAllByNameContaining(String name, Pageable pageable);
+    Goods findAllById(long id);
 }

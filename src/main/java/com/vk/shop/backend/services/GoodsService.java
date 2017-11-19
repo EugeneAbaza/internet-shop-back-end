@@ -32,4 +32,8 @@ public class GoodsService {
     public Page<Goods> findAllByNameLike(String name, int page){
         return repository.findAllByNameContaining(name.substring(name.lastIndexOf('=')+1), new PageRequest(page, 4));
     }
+
+    public Goods findAllById(long id) {
+        return repository.findAllById(id);
+    }
 }

@@ -13,13 +13,19 @@ public class GoodsController {
     @Autowired
     private GoodsService service;
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/category/{id}")
     public Page<Goods> findAllByCategoryId(@PathVariable("id") int id, @RequestParam("page") int page){
         return service.findAllByCategoryId(id, page);
     }
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public Page<Goods> search(@RequestBody String title){
+        //TODO сменить статически заданную страницу
         return service.findAllByNameLike(title, 0);
+    }
+
+    @RequestMapping("/{id}")
+    public Goods findAllById(@PathVariable("id") long id){
+        return service.findAllById(id);
     }
 }
