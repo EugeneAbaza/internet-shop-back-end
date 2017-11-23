@@ -19,6 +19,4 @@ public class User {
     private String lastName;
     private String patronymic;
     private double rating;
-    @Column(name = "is_logged")
-    private boolean isLogged;
 }

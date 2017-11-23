@@ -22,8 +22,4 @@ public class UserController {
         return service.registration(user);
     }
 
-    @RequestMapping(path = "/logout", method = RequestMethod.POST)
-    public int logOut(@RequestBody String email){
-        return service.logOut(email);
-    }
 }

@@ -11,13 +11,11 @@ public class UserService {
     private UserRepository repository;
 
     public int logIn(User user){
-        User u = repository.findByEmail(user.getEmail());
+        User u = repository.findByEmailEquals(user.getEmail());
         if(u == null){
             return 1;//user not found
         } else {
             if(user.getEmail().equals(u.getEmail()) && user.getPassword().equals(u.getPassword())) {
-                u.setLogged(true);
-                repository.save(u);
                 return 0;//authorized
             }
             else {
@@ -27,21 +25,11 @@ public class UserService {
     }
 
     public int registration(User user) {
-        User u = repository.findByEmail(user.getEmail());
+        User u = repository.findByEmailEquals(user.getEmail());
         if(u == null){
             repository.save(user);
             return 0;//successfully
         }
         return 1;//user already exist
-    }
-
-    public int logOut(String email){
-        User u = repository.findByEmail(email);
-        if(u != null){
-            u.setLogged(false);
-            repository.save(u);
-            return 0;//successfully
-        }
-        return 1;//user not found
     }
 }
