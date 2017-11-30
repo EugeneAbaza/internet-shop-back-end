@@ -5,17 +5,33 @@ import com.vk.shop.backend.data.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Service
 public class UserService {
     @Autowired
     private UserRepository repository;
+    private MessageDigest digest;
+
+    public UserService() {
+        try {
+            digest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
 
     public int logIn(User user){
         User u = repository.findByEmailEquals(user.getEmail());
         if(u == null){
             return 1;//user not found
         } else {
-            if(user.getEmail().equals(u.getEmail()) && user.getPassword().equals(u.getPassword())) {
+            byte[] digest1 = digest.digest(user.getPassword().getBytes());
+            BigInteger integer = new BigInteger(1, digest1);
+            String passHash = integer.toString(16);
+            if(user.getEmail().equals(u.getEmail()) && passHash.equals(u.getPassword())) {
                 return 0;//authorized
             }
             else {
