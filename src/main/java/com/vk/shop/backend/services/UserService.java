@@ -43,6 +43,7 @@ public class UserService {
     public int registration(User user) {
         User u = repository.findByEmailEquals(user.getEmail());
         if(u == null){
+            user.setPassword(new BigInteger(1, digest.digest(user.getPassword().getBytes())).toString(16));
             repository.save(user);
             return 0;//successfully
         }
