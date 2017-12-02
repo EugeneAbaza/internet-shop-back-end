@@ -49,4 +49,8 @@ public class UserService {
         }
         return 1;//user already exist
     }
+
+    public User getUserInfo(String email){
+        return repository.findByEmailEquals(email);
+    }
 }

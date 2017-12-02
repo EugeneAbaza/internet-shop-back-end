@@ -22,4 +22,9 @@ public class UserController {
         return service.registration(user);
     }
 
+    @RequestMapping(path = "/user", method = RequestMethod.POST)
+    public User getUserInfo(@RequestBody String email){
+        return service.getUserInfo(email);
+    }
+
 }
