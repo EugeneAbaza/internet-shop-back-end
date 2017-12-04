@@ -13,9 +13,13 @@ public class GoodsController {
     @Autowired
     private GoodsService service;
 
-    @RequestMapping("/category/{id}")
-    public Page<Goods> findAllByCategoryId(@PathVariable("id") int id, @RequestParam("page") int page){
-        return service.findAllByCategoryId(id, page);
+    @RequestMapping(value = "/category/{id}")
+    public Page<Goods> findAllByCategoryId(
+            @PathVariable("id") int id,
+            @RequestParam("page") int page,
+            @RequestParam("pricefrom") int priceFrom,
+            @RequestParam("priceto") int priceTo){
+        return service.findAllByCategoryId(id, page, priceFrom, priceTo);
     }
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)

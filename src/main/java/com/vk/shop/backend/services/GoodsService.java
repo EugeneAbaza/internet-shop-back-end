@@ -27,7 +27,9 @@ public class GoodsService {
         return repository.findTop4ByOrderByDateDesc();
     }
 
-    public Page<Goods> findAllByCategoryId(long id, int page){ return repository.findAllByCategoryId(id, new PageRequest(page, 4));}
+    public Page<Goods> findAllByCategoryId(long id, int page, long priceFrom, long priceTo){
+        return repository.findAllByCategoryIdAndPriceBetween(id, new PageRequest(page, 4), priceFrom, priceTo);
+    }
 
     public Page<Goods> findAllByNameLike(String name, int page){
         return repository.findAllByNameContaining(name.substring(name.lastIndexOf('=')+1), new PageRequest(page, 4));

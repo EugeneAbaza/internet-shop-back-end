@@ -51,6 +51,9 @@ public class UserService {
     }
 
     public User getUserInfo(String email){
-        return repository.findByEmailEquals(email);
+        User u = repository.findByEmailEquals(email);
+        if(u != null)
+            u.setPassword(null);
+        return u;
     }
 }

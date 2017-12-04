@@ -12,7 +12,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Long> {
     List<Goods> findTop4ByDiscountGreaterThan(long discount, Sort sort);
     List<Goods> findTop4ByOrderBySalesDesc();
     List<Goods> findTop4ByOrderByDateDesc();
-    Page<Goods> findAllByCategoryId(long id, Pageable pageable);
+    Page<Goods> findAllByCategoryIdAndPriceBetween(long id, Pageable pageable, long price, long price2);
     Page<Goods> findAllByNameContaining(String name, Pageable pageable);
     Goods findAllById(long id);
 }
